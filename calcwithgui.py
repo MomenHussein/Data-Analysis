@@ -226,7 +226,7 @@ def mod():
     ans1 = float(disp.get())
     ans2 = float(disp.get())
     ans = math.fmod(ans1, ans2)
-    disp.insert(pos, ans)
+    disp.insert(ans1, ans2)
 def mod_clicked():
     pos = len(disp.get())
     disp.insert(pos, '%')
