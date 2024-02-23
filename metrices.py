@@ -19,32 +19,45 @@ def scaldivision(a=[],b=[]):
     if len(a) == len(b):
         return a/b
 
-def scalnummultiplication(a=[],num):
-    if len(a) == len(b):
-        return a*num
-        
-def scalnumdivision(a=[],num):
-    if len(a) == len(b):
-        return a/num
-    
-def dotmultiplication(a=[],b=[]):
-    
-    dimensions1 = np.shape(a)
-    rows1, columns1 = dimensions1
-    dimensions2 = np.shape(b)
-    rows2, columns2 = dimensions2
- 
-    res = [[0 for x in range(rows1)] for y in range(columns2)] 
- 
-# explicit for loops
+def scalnummultiplication(a=[],num=1):
     for i in range(len(a)):
-        for j in range(len(b[0])):
-            for k in range(len(b)):
- 
-            # resulted matrix
-                res[i][j] += a[i][k] * b[k][j]
+        a[i]*=num
+    return a
+        
+def scalnumdivision(a=[],num=1):
+    for i in range(len(a)):
+        a[i]/=num
+    return a
+
+def scalnumadd(a=[],num=0):
+    for i in range(len(a)):
+        a[i]+=num
+    return a
+
+def scalnumsubstraction(a=[],num=0):
+    for i in range(len(a)):
+        a[i]-=num
+    return a
     
-    return res
+def dotmultiplication(mat1=[[]],mat2=[[]]):
+    
+    dimensions1 = np.shape(mat1)
+    R1, C1 = dimensions1
+    dimensions2 = np.shape(mat2)
+    R2, C2 = dimensions2
+    if C1 == R2:
+        res = [[0 for x in range(R1)] for y in range(C2)] 
+     
+    # explicit for loops
+        for i in range(0, R1):
+            for j in range(0, C2):
+                for k in range(0, R2):
+                    res[i][j] += mat1[i][k] * mat2[k][j]
+        return res
+    else:
+        return "Sorry Invalid Dimensions"
+    
+        
 
 def inverse(a=[]):
 
@@ -57,3 +70,9 @@ def division(a=[],b=[]):
 
 def transpose(arr=[]):
     print(list(map(list, zip(*arr))))
+    
+print(dotmultiplication([[1, 2, 3],[3, 4, 5],[7, 6, 4]],[[5, 2, 6],[5, 6, 7],[7, 6, 4]]))
+                                     
+                                     
+   
+    
